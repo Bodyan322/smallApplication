@@ -12,16 +12,49 @@ body {
     border: 10px solid;
   }
 }
-.wrapperCurrrency{
+.appWrapper {
+  display: flex;
+  flex-direction: column;
   position: relative;
-  margin: 0 auto;
   top: 100px;
+  margin: 0 auto;
+  width: 90%;
+  // padding-top: 40px;
+  background-color: hsla(0, 0%, 100%, 0.5);
+  border-radius:10px; 
+
+  h1{
+    width: 40%;
+    color: rgb(120, 0, 168);
+    padding-left: 30px;
+  }
+}
+.wrapperForTabs{
   display: flex;
   justify-content: space-between;
-  width: 90%;
-  background-color: rgb(121, 0, 168);
+  
+  .nav-tabs{
+    padding-top: 14px;
+    border-bottom: rgba(120, 0, 168, 0.5);
+  }
+
+  .nav-link.active {
+    background-color: rgba(120, 0, 168, 0.5);
+    color: #fff;
+    
+  }
+  .nav-link {
+    color: #fff;
+  }
+}
+.wrapperCurrrency{
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  background-color: rgba(120, 0, 168, 0.5);
   height: 150px;
-  border-radius:10px; 
+  border-bottom-left-radius:10px;
+  border-bottom-right-radius:10px; 
 .wrapperInputs {
   padding: 10px;
   width: 100%;
@@ -36,6 +69,32 @@ body {
     font-size: 16px;
     font-weight: bold;
     height: 20px;
+  }
+  .btn {
+    height: 38px;
+  }
+  .btn-outline-exchange {
+    color: #17a2b8;
+    border-color: #17a2b8;
+    color: #fff;
+    background-color: #17a2b8;
+    display: flex;
+    flex-direction: column;
+    padding: 0 12px;
+
+    &:hover{
+      color: #fff;
+      background-color: #106e7c;
+      border-color: #106e7c;
+    }
+    span{
+      height: 10px;
+    }
+  }
+  .or {
+    height: 38px;
+    color: #fff;
+    font-size: 20px;
   }
 }
   .form-control{
