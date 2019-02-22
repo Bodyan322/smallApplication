@@ -33,19 +33,34 @@ body {
   display: flex;
   justify-content: space-between;
   
-  .nav-tabs{
-    padding-top: 14px;
-    border-bottom: rgba(120, 0, 168, 0.5);
-  }
-
-  .nav-link.active {
-    background-color: rgba(120, 0, 168, 0.5);
-    color: #fff;
-    
-  }
-  .nav-link {
-    color: #fff;
-  }
+  .tab-label{
+    width: 50%;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    padding-top: 20px;
+    margin-bottom: 0;
+    li{
+        background: rgba(120, 0, 168, 0.2);
+        text-align: center;
+        color: #fff;
+        line-height: 35px;
+        width: 50%;
+        border: 1px solid rgb(120,0,168);
+        border-bottom: none;
+        border-radius: 5px 5px 0 0;
+        text-transform: capitalize;
+        transition: .3s linear;
+        list-style: none;
+        &:hover{
+            background: rgba(120, 0, 168, 0.5);;
+            cursor: pointer;
+        }
+        &.active{
+            background: rgba(120, 0, 168, 0.5);;
+        }
+    }
+}
 }
 .wrapperCurrrency{
   display: flex;
@@ -68,7 +83,7 @@ body {
     margin-bottom: 0;
     font-size: 16px;
     font-weight: bold;
-    height: 20px;
+    height: 25px;
   }
   .btn {
     height: 38px;
@@ -100,8 +115,11 @@ body {
   .form-control{
     width: 45%;
   }
-  .currencyInp{
-    // position: relative;
-    // top: 20px;
+  .content-buy {
+    width: 100%;
+  }
+  .content-sell {
+    width: 100%;
+    display: none;
   }
 }
