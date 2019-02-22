@@ -5,16 +5,76 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+  <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
   <link rel="stylesheet" href="./css/main.css">
-  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
-  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
-  <script defer src="./js/index.js"></script>
+  
   <title>application</title>
 </head>
 
 <body>
-  <h1>Congrats!</h1>
+  <div class="appWrapper">
+    <div class="wrapperForTabs">
+      <h1>Currency Converter</h1>
+      <ul class="tab-label">
+          <li class="active" ng-click="activeTab=!activeTab">sell</li>
+          <li ng-click="activeTab=!activeTab">buy</li>
+        </ul>
+    </div>    
+    <div class="wrapperCurrrency">
+      <div class="content-buy">
+      <div class="wrapperInputs">
+        <p class="infoTxt">Give:</p>
+        <p class="infoTxt">Receive:</p>
+        <select class="form-control" name="currency">
+          <option value="US">US</option>
+          <option value="UA">UA</option>
+          <option value="RUB">RUB</option>
+        </select>
+        <button type="button" class="btn btn-outline-exchange">
+          <span>&#8656;</span>
+          <span>&#8658;</span>
+        </button>
+        <select class="form-control">
+          <option value="US">US</option>
+          <option value="UA">UA</option>
+          <option value="RUB">RUB</option>
+        </select>
+        <p class="infoTxt">How much need to change:</p>
+        <p class="infoTxt">How much need to get:</p>
+        <input class="form-control currencyInp" type="text" placeholder="">
+        <span class="or">or</span>
+        <input class="form-control currencyInp" type="text" placeholder="">
+      </div>
+    </div>
+    <div class="content-sell">
+        <div class="wrapperInputs">
+          <p class="infoTxt">Give:</p>
+          <p class="infoTxt">Receive:</p>
+          <select class="form-control" name="currency" >
+            <option value="US">UR</option>
+            <option value="UA">UA</option>
+            <option value="RUB">RUB</option>
+          </select>
+          <button type="button" class="btn btn-outline-exchange">
+            <span>&#8656;</span>
+            <span>&#8658;</span>
+          </button>
+          <select class="form-control">
+            <option value="US">UR</option>
+            <option value="UA">UA</option>
+            <option value="RUB">RUB</option>
+          </select>
+          <p class="infoTxt">How much need to change:</p>
+          <p class="infoTxt">How much need to get:</p>
+          <input class="form-control currencyInp" type="text" placeholder="">
+          <span class="or">or</span>
+          <input class="form-control currencyInp" type="text" placeholder="">
+        </div>
+      </div>
+  </div>
+</div>
+<script defer src="./js/index.js"></script>
 </body>
 
 </html>
