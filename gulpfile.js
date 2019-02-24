@@ -28,11 +28,11 @@ gulp.task('html:build', () => gulp.src('src/*.html')
 gulp.task('js:build', () => gulp.src(
   [
     'src/**/main.js',
-    'src/**/service.js'
+    'src/**/service.js',
+    'src/**/controller.js'
   ])
   .pipe(sourcemaps.init())
   .pipe(concat('index.js'))
-  .pipe(uglify())
   .pipe(sourcemaps.write())
   .pipe(gulp.dest('dest/js'))
   .pipe(reload({ stream: true })));
