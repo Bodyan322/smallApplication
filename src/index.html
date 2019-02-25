@@ -24,8 +24,8 @@
     <div class="wrapperCurrrency">
       <div class="content-sell" ng-show="ng.activeTab">
       <div class="wrapperInputs">
-        <p class="infoTxt">Give</p>
-        <p class="infoTxt">Receive</p>
+        <p class="infoTxt">Give: {{ng.currencyGiven.ccy}}</p>
+        <p class="infoTxt">Receive: {{ng.currencyReceiven.ccy}}</p>
         <select class="form-control" name="currency-sell"
         ng-model="ng.currencyGiven"
         ng-change="ng.convertValue()"
