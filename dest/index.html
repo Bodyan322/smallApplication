@@ -12,68 +12,62 @@
   <title>application</title>
 </head>
 
-<body>
-  <div class="appWrapper">
+<body ng-app='app'>
+      <div class="appWrapper" ng-controller="controllServ as ng">
     <div class="wrapperForTabs">
       <h1>Currency Converter</h1>
       <ul class="tab-label">
-          <li class="active" ng-click="activeTab=!activeTab">sell</li>
-          <li ng-click="activeTab=!activeTab">buy</li>
+          <li ng-class="{'active':ng.activeTab}" ng-click="ng.activeTab=true">sell</li>
+          <li ng-class="{'active':!ng.activeTab}"ng-click="ng.activeTab=false">buy</li>
         </ul>
     </div>    
     <div class="wrapperCurrrency">
-      <div class="content-buy">
+      <div class="content-sell" ng-show="ng.activeTab">
       <div class="wrapperInputs">
-        <p class="infoTxt">Give:</p>
-        <p class="infoTxt">Receive:</p>
-        <select class="form-control" name="currency">
-          <option value="US">US</option>
-          <option value="UA">UA</option>
-          <option value="RUB">RUB</option>
-        </select>
+        <p class="infoTxt">Give: {{ng.currencyGiven.ccy}}</p>
+        <p class="infoTxt">Receive: {{ng.currencyReceiven.ccy}}</p>
+        <select class="form-control" name="currency-sell"
+        ng-model="ng.currencyGiven"
+        ng-change="ng.convertValue()"
+        ng-options='item.ccy for item in ng.currency | filterCurr: ng.currencyGiven.ccy' ></select>
         <button type="button" class="btn btn-outline-exchange">
           <span>&#8656;</span>
           <span>&#8658;</span>
         </button>
-        <select class="form-control">
-          <option value="US">US</option>
-          <option value="UA">UA</option>
-          <option value="RUB">RUB</option>
+        <select class="form-control" name="currency-buy"
+        ng-model="ng.currencyReceiven"
+        ng-change="ng.convertValue()"
+        ng-options='item.ccy for item in ng.currency | filterCurr: ng.currencyReceiven.ccy'>
         </select>
         <p class="infoTxt">How much need to change:</p>
         <p class="infoTxt">How much need to get:</p>
-        <input class="form-control currencyInp" type="text" placeholder="">
+        <input class="form-control currencyInp">
         <span class="or">or</span>
-        <input class="form-control currencyInp" type="text" placeholder="">
+        <input class="form-control currencyInp" type="text">
       </div>
     </div>
-    <div class="content-sell">
+    <div class="content-buy" ng-show="ng.activeTab === false">
         <div class="wrapperInputs">
           <p class="infoTxt">Give:</p>
           <p class="infoTxt">Receive:</p>
-          <select class="form-control" name="currency" >
-            <option value="US">UR</option>
-            <option value="UA">UA</option>
-            <option value="RUB">RUB</option>
+          <select class="form-control" name="currency-sell">
           </select>
           <button type="button" class="btn btn-outline-exchange">
             <span>&#8656;</span>
             <span>&#8658;</span>
           </button>
-          <select class="form-control">
-            <option value="US">UR</option>
-            <option value="UA">UA</option>
-            <option value="RUB">RUB</option>
+          <select class="form-control" name="currency-buy">
           </select>
           <p class="infoTxt">How much need to change:</p>
           <p class="infoTxt">How much need to get:</p>
-          <input class="form-control currencyInp" type="text" placeholder="">
+          <input class="form-control currencyInp">
           <span class="or">or</span>
-          <input class="form-control currencyInp" type="text" placeholder="">
+          <input class="form-control currencyInp" type="text">
         </div>
       </div>
   </div>
 </div>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.7.7/angular.min.js"></script>
 <script defer src="./js/index.js"></script>
 </body>
 

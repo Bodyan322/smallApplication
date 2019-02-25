@@ -29,6 +29,9 @@ body {
     padding-left: 30px;
   }
 }
+.active {
+  background: rgba(120, 0, 168, 0.5);
+}
 .wrapperForTabs{
   display: flex;
   justify-content: space-between;
@@ -57,11 +60,12 @@ body {
             cursor: pointer;
         }
         &.active{
-            background: rgba(120, 0, 168, 0.5);;
+            background: rgba(120, 0, 168, 0.5);
         }
     }
 }
 }
+
 .wrapperCurrrency{
   display: flex;
   justify-content: space-between;
@@ -120,6 +124,6 @@ body {
   }
   .content-sell {
     width: 100%;
-    display: none;
+    // display: none;
   }
 }
