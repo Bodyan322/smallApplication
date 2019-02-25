@@ -22,28 +22,28 @@ const path = {
   src: {
     html: 'src/index.html',
     js: 'src/js/**/*.js',
-    style: 'src/scss/style.scss'
+    style: 'src/styles/main.scss'
   }
 };
 
 gulp.task('index', function() {
   gulp.src(path.src.html)
     .pipe(htmlreplace({
-        'css': 'css/style.css',
+        'css': 'css/main.css',
         'js': 'js/index.js'
     }))
     .pipe(gulp.dest(path.build.html));
 });
 
 gulp.task('script', function() {
-  return gulp.src(['src/js/index.js', 'src/js/app/service.js', 'src/js/app/controller.js'])
+  return gulp.src(['src/js/index.js', 'src/js/service.js', 'src/js/controller.js'])
     .pipe(concat('index.js'))
     .pipe(plumber())
     .pipe(gulp.dest(path.build.js));
 });
 
 gulp.task('script:build', function() {
-  return gulp.src(['src/js/index.js', 'src/js/app/service.js', 'src/js/app/controller.js'])
+  return gulp.src(['src/js/index.js', 'src/js/service.js', 'src/js/controller.js'])
     .pipe(concat('index.js'))
     .pipe(babel({
       presets: ['env']
