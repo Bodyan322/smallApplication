@@ -26,12 +26,18 @@
       <div class="wrapperInputs">
         <p class="infoTxt">Give</p>
         <p class="infoTxt">Receive</p>
-        <select class="form-control"></select>
+        <select class="form-control" name="currency-sell"
+        ng-model="ng.currencyGiven"
+        ng-change="ng.convertValue()"
+        ng-options='item.ccy for item in ng.currency | filterCurr: ng.currencyGiven.ccy' ></select>
         <button type="button" class="btn btn-outline-exchange">
           <span>&#8656;</span>
           <span>&#8658;</span>
         </button>
-        <select class="form-control" name="currency-buy">
+        <select class="form-control" name="currency-buy"
+        ng-model="ng.currencyReceiven"
+        ng-change="ng.convertValue()"
+        ng-options='item.ccy for item in ng.currency | filterCurr: ng.currencyReceiven.ccy'>
         </select>
         <p class="infoTxt">How much need to change:</p>
         <p class="infoTxt">How much need to get:</p>
