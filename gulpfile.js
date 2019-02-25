@@ -1,61 +1,94 @@
 'use strict';
 
 const gulp = require('gulp');
-const watch = require('gulp-watch');
-const prefixer = require('gulp-autoprefixer');
-const uglify = require('gulp-uglify');
 const sass = require('gulp-sass');
-const sourcemaps = require('gulp-sourcemaps');
-const browserSync = require('browser-sync');
+const autoprefixer = require('gulp-autoprefixer');
+const uglify = require('gulp-uglify');
+const plumber = require('gulp-plumber');
+const minifycss = require('gulp-minify-css');
+const babel = require('gulp-babel');
+const imagemin = require('gulp-imagemin');
+const browserSync = require('browser-sync').create();
 const concat = require('gulp-concat');
-const { reload } = browserSync;
+const htmlreplace = require('gulp-html-replace');
 
 
-const config = {
-  server: {
-    baseDir: './dest'
+const path = {
+  build: {
+    html: 'build/',
+    js: 'build/js/',
+    css: 'build/css/'
   },
-  port: 6996,
-  logPrefix: 'Succesful connected'
+  src: {
+    html: 'src/index.html',
+    js: 'src/js/**/*.js',
+    style: 'src/scss/style.scss'
+  }
 };
 
-gulp.task('webserver', () => browserSync(config));
-
-gulp.task('html:build', () => gulp.src('src/*.html')
-  .pipe(gulp.dest('dest/'))
-  .pipe(reload({ stream: true })));
-
-gulp.task('js:build', () => gulp.src(
-  [
-    'src/**/index.js',
-    'src/**/service.js',
-    'src/**/controller.js'
-  ])
-  .pipe(sourcemaps.init())
-  .pipe(concat('index.js'))
-  .pipe(sourcemaps.write())
-  .pipe(gulp.dest('dest/js'))
-  .pipe(reload({ stream: true })));
-
-gulp.task('style:build', () => gulp.src(['src/styles/**/main.scss'])
-  .pipe(sourcemaps.init())
-  .pipe(sass())
-  .pipe(prefixer())
-  .pipe(sourcemaps.write())
-  .pipe(gulp.dest('dest/css/'))
-  .pipe(reload({ stream: true })));
-
-gulp.task('build', [
-  'html:build',
-  'js:build',
-  'style:build'
-]);
-
-
-gulp.task('watch', () => {
-  watch(['src/**/*.html'], () => gulp.start('html:build'));
-  watch(['src/styles/**/*.scss'], () => gulp.start('style:build'));
-  watch(['src/js/*.js'], () => gulp.start('js:build'));
+gulp.task('index', function() {
+  gulp.src(path.src.html)
+    .pipe(htmlreplace({
+        'css': 'css/style.css',
+        'js': 'js/index.js'
+    }))
+    .pipe(gulp.dest(path.build.html));
 });
 
-gulp.task('default', ['build', 'webserver', 'watch']);
+gulp.task('script', function() {
+  return gulp.src(['src/js/index.js', 'src/js/app/service.js', 'src/js/app/controller.js'])
+    .pipe(concat('index.js'))
+    .pipe(plumber())
+    .pipe(gulp.dest(path.build.js));
+});
+
+gulp.task('script:build', function() {
+  return gulp.src(['src/js/index.js', 'src/js/app/service.js', 'src/js/app/controller.js'])
+    .pipe(concat('index.js'))
+    .pipe(babel({
+      presets: ['env']
+      }))
+    .pipe(uglify())
+    .pipe(gulp.dest(path.build.js));
+});
+
+
+gulp.task('style', function() {
+  gulp.src(path.src.style)
+  .pipe(plumber())
+  .pipe(sass())
+  .pipe(gulp.dest(path.build.css));
+});
+
+gulp.task('style:build', function() {
+  gulp.src(path.src.style)
+    .pipe(sass())
+    .pipe(autoprefixer({
+      browsers: ['last 2 versions'],
+      cascade: false
+    }))
+    .pipe(minifycss(''))
+    .pipe(gulp.dest(path.build.css));
+});
+
+
+gulp.task('server', ['index', 'script', 'style'], function(done) {
+  browserSync.init({
+    server: {
+      baseDir: './build/'
+    },
+    host: 'localhost',
+    files: [path.build.html, path.build.js, path.build.css]
+  });
+  done();
+});
+
+gulp.task('watch', function() {
+  gulp.watch(path.src.html, ['index']);
+  gulp.watch(path.src.style, ['style']);
+  gulp.watch(path.src.js, ['script']);
+});
+
+
+gulp.task('default', ['watch', 'server']);
+gulp.task('build', ['index', 'script:build', 'style:build']);
