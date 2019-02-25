@@ -10,5 +10,16 @@
         });
       return this.list;
     };
+    this.convertTo = (startVal, endVal) => {
+      let result = 0;
+      result = startVal * endVal;
+      return result;
+    };
+
+    this.convertFrom = (startVal, endValo) => {
+      let result = 0;
+      result = startVal / endValo;
+      return result;
+    };
   }]);
 }());

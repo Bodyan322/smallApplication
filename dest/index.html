@@ -17,12 +17,12 @@
     <div class="wrapperForTabs">
       <h1>Currency Converter</h1>
       <ul class="tab-label">
-          <li>sell</li>
-          <li>buy</li>
+          <li ng-class="{'active':ng.activeTab}" ng-click="ng.activeTab=true">sell</li>
+          <li ng-class="{'active':!ng.activeTab}"ng-click="ng.activeTab=false">buy</li>
         </ul>
     </div>    
     <div class="wrapperCurrrency">
-      <div class="content-sell">
+      <div class="content-sell" ng-show="ng.activeTab">
       <div class="wrapperInputs">
         <p class="infoTxt">Give</p>
         <p class="infoTxt">Receive</p>
@@ -40,7 +40,7 @@
         <input class="form-control currencyInp" type="text">
       </div>
     </div>
-    <div class="content-buy">
+    <div class="content-buy" ng-show="ng.activeTab === false">
         <div class="wrapperInputs">
           <p class="infoTxt">Give:</p>
           <p class="infoTxt">Receive:</p>
