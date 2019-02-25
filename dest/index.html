@@ -13,63 +13,70 @@
 </head>
 
 <body ng-app='app'>
-  <div class="appWrapper" ng-controller="haha">
+      <div class="appWrapper" ng-controller="myController as mc">
     <div class="wrapperForTabs">
       <h1>Currency Converter</h1>
       <ul class="tab-label">
-          <li class="active" ng-click="activeTab=false" >sell</li>
-          <li ng-click="activeTab=true; chgBg='active'" ng-class="chgBg">buy</li>
+          <li ng-class="{'active':mc.activeTab}" ng-click="mc.activeTab=true">sell</li>
+          <li ng-class="{'active':!mc.activeTab}"ng-click="mc.activeTab=false">buy</li>
         </ul>
     </div>    
     <div class="wrapperCurrrency">
-      <div class="content-buy" ng-show="activeTab === false">
+      <div class="content-sell" ng-show="mc.activeTab">
       <div class="wrapperInputs">
-        <p class="infoTxt">Give: {{givenCurrency}}</p>
-        <p class="infoTxt">Receive: {{receivenCurrency}}</p>
-        <select class="form-control" name="currency" ng-model="givenCurrency">
-          <option value="US">US</option>
-          <option value="UA">UA</option>
-          <option value="RUB">RUB</option>
+        <p class="infoTxt" ng-bind="mc.currencyFrom.ccy">Give:{{mc.currencyFrom.ccy}} </p>
+        <p class="infoTxt" ng-bind="mc.currencyTo.ccy">Receive:{{mc.currencyTo.ccy}} </p>
+        <select class="form-control" name="currency-sell"
+        ng-model="mc.currencyFrom"
+        ng-change="mc.convertValue()"
+        ng-options='item.ccy for item in mc.currency | currencyFilter: mc.currencyTo.ccy'>
         </select>
-        <button type="button" class="btn btn-outline-exchange" ng-click="givenCurrency = receivenCurrency">
+        <button type="button" class="btn btn-outline-exchange" ng-click="mc.changeValues($event)">
           <span>&#8656;</span>
           <span>&#8658;</span>
         </button>
-        <select class="form-control" ng-model="receivenCurrency">
-          <option value="US">US</option>
-          <option value="UA">UA</option>
-          <option value="RUB">RUB</option>
+        <select class="form-control" name="currency-buy"
+        ng-model="mc.currencyTo"
+        ng-change="mc.convertValue()"
+        ng-options='item.ccy for item in mc.currency | currencyFilter: mc.currencyFrom.ccy'>
+          <option value="Choose currency" default></option>
         </select>
         <p class="infoTxt">How much need to change:</p>
         <p class="infoTxt">How much need to get:</p>
-        <input class="form-control currencyInp" type="text" placeholder="">
+        <input class="form-control currencyInp" type="number"
+        min="0"
+        ng-model="mc.countVal"
+        ng-change="mc.convertValue()">
         <span class="or">or</span>
-        <input class="form-control currencyInp" type="text" placeholder="">
+        <input class="form-control currencyInp" type="text" readonly ng-model="mc.costVal" ng-value="mc.costVal | number:2">
       </div>
     </div>
-    <div class="content-sell" ng-hide="activeTab === false">
+    <div class="content-buy" ng-show="mc.activeTab === false">
         <div class="wrapperInputs">
           <p class="infoTxt">Give:</p>
           <p class="infoTxt">Receive:</p>
-          <select class="form-control" name="currency" >
-            <option value="US">UR</option>
-            <option value="UA">UA</option>
-            <option value="RUB">RUB</option>
+          <select class="form-control" name="currency-sell"
+          ng-model="mc.currencyFrom"
+          ng-change="mc.convertValue()"
+          ng-options='item.ccy for item in mc.currency | currencyFilter: mc.currencyTo.ccy' >
           </select>
-          <button type="button" class="btn btn-outline-exchange">
+          <button type="button" class="btn btn-outline-exchange" ng-click="mc.changeValues()">
             <span>&#8656;</span>
             <span>&#8658;</span>
           </button>
-          <select class="form-control">
-            <option value="US">UR</option>
-            <option value="UA">UA</option>
-            <option value="RUB">RUB</option>
+          <select class="form-control" name="currency-buy"
+          ng-model="mc.currencyTo"
+          ng-change="mc.convertValue()"
+          ng-options='item.ccy for item in mc.currency | currencyFilter: mc.currencyFrom.ccy'>
           </select>
           <p class="infoTxt">How much need to change:</p>
           <p class="infoTxt">How much need to get:</p>
-          <input class="form-control currencyInp" type="text" placeholder="">
+          <input class="form-control currencyInp" type="number"
+          min="0"
+          ng-model="mc.countVal"
+          ng-change="mc.convertValue()">
           <span class="or">or</span>
-          <input class="form-control currencyInp" type="text" placeholder="">
+          <input class="form-control currencyInp" type="text" readonly ng-model="mc.costVal" ng-value="mc.costVal | number:2">
         </div>
       </div>
   </div>

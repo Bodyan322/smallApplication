@@ -27,7 +27,7 @@ gulp.task('html:build', () => gulp.src('src/*.html')
 
 gulp.task('js:build', () => gulp.src(
   [
-    'src/**/main.js',
+    'src/**/index.js',
     'src/**/service.js',
     'src/**/controller.js'
   ])
