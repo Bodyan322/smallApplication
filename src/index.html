@@ -20,13 +20,13 @@
     <div class="wrapperCurrrency">
       <div class="content-sell">
       <div class="wrapperInputs">
-        <p class="infoTxt">Give: </p>
-        <p class="infoTxt">Receive: </p>
+        <p class="infoTxt">Give: {{ng.currencyGiven.ccy}} </p>
+        <p class="infoTxt">Receive: {{ng.currencyReceiven.ccy}} </p>
         <select class="form-control" 
         name="currency-sell"
         ng-model="ng.currencyGiven"
         ng-options='item.ccy for item in ng.currency | filterCurr: ng.currencyGiven.ccy' ></select>
-        <button type="button" class="btn btn-outline-exchange" ng-click="ng.changeValues($event)">
+        <button type="button" class="btn btn-outline-exchange" ng-click="ng.changeValues()">
           <span>&#8656;</span>
           <span>&#8658;</span>
         </button>

@@ -13,8 +13,6 @@
     };
 
     this.convertValue = () => {
-      // console.log(this.currencyGiven.buy);
-      // console.log(this.currencyReceiven.sale);
       const res = currServ.convertTo(this.countValue, this.currencyGiven.buy);
       this.costValue = currServ.convertFrom(res, this.currencyReceiven.sale);
     };
@@ -22,7 +20,12 @@
     $scope.$watch('ng.currencyGiven', () => {
       this.convertValue();
     });
+
     $scope.$watch('ng.currencyReceiven', () => {
+      this.convertValue();
+    });
+
+    $scope.$watch('ng.countValue', () => {
       this.convertValue();
     });
   }]);
