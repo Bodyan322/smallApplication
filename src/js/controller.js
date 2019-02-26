@@ -1,6 +1,6 @@
 /* global app */
 (function() {
-  app.controller('controllServ', ['$scope', 'currServ', 'constantValues', function($scope, constantValues, currServ) {
+  app.controller('controllServ', ['$scope', 'currServ', 'constantValues', function($scope, currServ, constantValues) {
     this.countValue = null;
     this.costValue = null;
     this.currency = currServ.loadCache();
@@ -13,6 +13,8 @@
     };
 
     this.convertValue = () => {
+      // console.log(this.currencyGiven.buy);
+      // console.log(this.currencyReceiven.sale);
       const res = currServ.convertTo(this.countValue, this.currencyGiven.buy);
       this.costValue = currServ.convertFrom(res, this.currencyReceiven.sale);
     };

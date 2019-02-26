@@ -26,7 +26,7 @@
         name="currency-sell"
         ng-model="ng.currencyGiven"
         ng-options='item.ccy for item in ng.currency | filterCurr: ng.currencyGiven.ccy' ></select>
-        <button type="button" class="btn btn-outline-exchange" ng-click="mc.changeValues($event)">
+        <button type="button" class="btn btn-outline-exchange" ng-click="ng.changeValues($event)">
           <span>&#8656;</span>
           <span>&#8658;</span>
         </button>
@@ -37,9 +37,11 @@
         </select>
         <p class="infoTxt">How much need to change:</p>
         <p class="infoTxt">How much need to get:</p>
-        <input class="form-control currencyInp">
+        <input class="form-control currencyInp" type="number"
+        min="0"
+        ng-model="ng.countValue">
         <span class="or">or</span>
-        <input class="form-control currencyInp" type="text">
+        <input class="form-control currencyInp" type="text" readonly ng-model="ng.costValue" ng-value="ng.costValue | number:2">
       </div>
     </div>
   </div>

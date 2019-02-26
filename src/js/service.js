@@ -5,7 +5,7 @@
     this.loadCache = () => {
       $http.get('https://api.privatbank.ua/p24api/pubinfo?json&exchange&coursid=5')
         .then(({ data }) => {
-          angular.copy(data, this.list);
+          data.forEach(item => this.list.push(item));
           this.list.push({ ccy: 'UAH', buy: '1', sale: '1' });
         });
       return this.list;
@@ -24,7 +24,7 @@
   }]);
 
   app.constant('constantValues', {
-    'currency': [{ ccy: 'USD', buy: '26.80000', sale: '27.10000' },
-      { ccy: 'EUR', buy: '30.30000', sale: '30.80000'}]
+    'currency': [{ ccy: 'USD', buy: '26.80000', sale: '27.10000', $$hashKey: 'object:3' },
+      { ccy: 'EUR', buy: '30.30000', sale: '30.80000', $$hashKey: 'object:7' }]
   });
 }());
