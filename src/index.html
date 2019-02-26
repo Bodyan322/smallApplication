@@ -16,10 +16,6 @@
       <div class="appWrapper" ng-controller="controllServ as ng">
     <div class="wrapperForTabs">
       <h1>Currency Converter</h1>
-      <ul class="tab-label">
-          <li ng-class="{'active':ng.activeTab}" ng-click="ng.activeTab=true">sell</li>
-          <li ng-class="{'active':!ng.activeTab}"ng-click="ng.activeTab=false">buy</li>
-        </ul>
     </div>    
     <div class="wrapperCurrrency">
       <div class="content-sell" ng-show="ng.activeTab">
@@ -46,25 +42,6 @@
         <input class="form-control currencyInp" type="text">
       </div>
     </div>
-    <div class="content-buy" ng-show="ng.activeTab === false">
-        <div class="wrapperInputs">
-          <p class="infoTxt">Give:</p>
-          <p class="infoTxt">Receive:</p>
-          <select class="form-control" name="currency-sell">
-          </select>
-          <button type="button" class="btn btn-outline-exchange">
-            <span>&#8656;</span>
-            <span>&#8658;</span>
-          </button>
-          <select class="form-control" name="currency-buy">
-          </select>
-          <p class="infoTxt">How much need to change:</p>
-          <p class="infoTxt">How much need to get:</p>
-          <input class="form-control currencyInp">
-          <span class="or">or</span>
-          <input class="form-control currencyInp" type="text">
-        </div>
-      </div>
   </div>
 </div>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.7.7/angular.min.js"></script>
