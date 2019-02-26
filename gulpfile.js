@@ -29,25 +29,25 @@ const path = {
 gulp.task('index', function() {
   gulp.src(path.src.html)
     .pipe(htmlreplace({
-        'css': 'css/main.css',
-        'js': 'js/index.js'
+      'css': 'css/main.css',
+      'js': 'js/index.js'
     }))
     .pipe(gulp.dest(path.build.html));
 });
 
 gulp.task('script', function() {
-  return gulp.src(['src/js/index.js', 'src/js/service.js', 'src/js/controller.js'])
+  return gulp.src(['src/js/index.js', 'src/js/service.js', 'src/js/controller.js', 'src/js/filter.js'])
     .pipe(concat('index.js'))
     .pipe(plumber())
     .pipe(gulp.dest(path.build.js));
 });
 
 gulp.task('script:build', function() {
-  return gulp.src(['src/js/index.js', 'src/js/service.js', 'src/js/controller.js'])
+  return gulp.src(['src/js/index.js', 'src/js/service.js', 'src/js/controller.js', 'src/js/filter.js'])
     .pipe(concat('index.js'))
     .pipe(babel({
       presets: ['env']
-      }))
+    }))
     .pipe(uglify())
     .pipe(gulp.dest(path.build.js));
 });
@@ -55,9 +55,9 @@ gulp.task('script:build', function() {
 
 gulp.task('style', function() {
   gulp.src(path.src.style)
-  .pipe(plumber())
-  .pipe(sass())
-  .pipe(gulp.dest(path.build.css));
+    .pipe(plumber())
+    .pipe(sass())
+    .pipe(gulp.dest(path.build.css));
 });
 
 gulp.task('style:build', function() {
