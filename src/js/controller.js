@@ -29,4 +29,8 @@
       this.convertValue();
     });
   }]);
+  app.component('converterCurr', {
+    templateUrl: 'converterApplication.html',
+    replace: true
+  });
 }());

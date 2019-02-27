@@ -13,38 +13,9 @@
 </head>
 
 <body ng-app='app'>
-      <div class="appWrapper" ng-controller="controllServ as ng">
-    <div class="wrapperForTabs">
-      <h1>Currency Converter</h1>
-    </div>    
-    <div class="wrapperCurrrency">
-      <div class="content-sell">
-      <div class="wrapperInputs">
-        <p class="infoTxt">Give: {{ng.currencyGiven.ccy}} </p>
-        <p class="infoTxt">Receive: {{ng.currencyReceiven.ccy}} </p>
-        <select class="form-control" 
-        name="currency-sell"
-        ng-model="ng.currencyGiven"
-        ng-options='item.ccy for item in ng.currency | filterCurr: ng.currencyReceiven.ccy' ></select>
-        <button type="button" class="btn btn-outline-exchange" ng-click="ng.changeValues()">
-          <span>&#8656;</span>
-          <span>&#8658;</span>
-        </button>
-        <select class="form-control" 
-        name="currency-buy"
-        ng-model="ng.currencyReceiven"
-        ng-options='item.ccy for item in ng.currency | filterCurr: ng.currencyGiven.ccy'>
-        </select>
-        <p class="infoTxt">How much need to change:</p>
-        <p class="infoTxt">How much need to get:</p>
-        <input class="form-control currencyInp" type="number"
-        min="0"
-        ng-model="ng.countValue">
-        <input class="form-control currencyInp" type="text" readonly ng-model="ng.costValue" ng-value="ng.costValue | number:2">
-      </div>
-    </div>
+  <div class="containerApplication" ng-app='app'>
+    <converter-curr></converter-curr>
   </div>
-</div>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.7.7/angular.min.js"></script>
 <script defer src="./js/index.js"></script>
 </body>

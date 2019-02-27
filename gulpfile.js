@@ -35,6 +35,11 @@ gulp.task('index', function() {
     .pipe(gulp.dest(path.build.html));
 });
 
+gulp.task('html', function() {
+  gulp.src('src/converterApplication.html')
+    .pipe(gulp.dest(path.build.html));
+});
+
 gulp.task('script', function() {
   return gulp.src(['src/js/index.js', 'src/js/service.js', 'src/js/controller.js', 'src/js/filter.js'])
     .pipe(concat('index.js'))
@@ -72,7 +77,7 @@ gulp.task('style:build', function() {
 });
 
 
-gulp.task('server', ['index', 'script', 'style'], function(done) {
+gulp.task('server', ['index', 'html', 'script', 'style'], function(done) {
   browserSync.init({
     server: {
       baseDir: './build/'
@@ -91,4 +96,4 @@ gulp.task('watch', function() {
 
 
 gulp.task('default', ['watch', 'server']);
-gulp.task('build', ['index', 'script:build', 'style:build']);
+gulp.task('build', ['index', 'html', 'script:build', 'style:build']);
