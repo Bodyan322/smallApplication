@@ -57,7 +57,6 @@ gulp.task('script:build', function() {
     .pipe(gulp.dest(path.build.js));
 });
 
-
 gulp.task('style', function() {
   gulp.src(path.src.style)
     .pipe(plumber())
