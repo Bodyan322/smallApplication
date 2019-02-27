@@ -36,19 +36,33 @@ gulp.task('index', function() {
 });
 
 gulp.task('html', function() {
-  gulp.src('src/converterApplication.html')
+  gulp.src('src/js/components/templates/currencyConverter.html')
     .pipe(gulp.dest(path.build.html));
 });
 
 gulp.task('script', function() {
-  return gulp.src(['src/js/index.js', 'src/js/service.js', 'src/js/controller.js', 'src/js/filter.js'])
+  return gulp.src([
+    'src/js/index.js',
+    'src/js/components/currencyConverter.js',
+    'src/js/components/currencyConverter.service.js',
+    'src/js/components/currencyConverter.controller.js',
+    'src/js/components/currencyConverter.filter.js',
+    'src/js/directives/internetConnection.directive.js'
+  ])
     .pipe(concat('index.js'))
     .pipe(plumber())
     .pipe(gulp.dest(path.build.js));
 });
 
 gulp.task('script:build', function() {
-  return gulp.src(['src/js/index.js', 'src/js/service.js', 'src/js/controller.js', 'src/js/filter.js'])
+  return gulp.src([
+    'src/js/index.js',
+    'src/js/components/currencyConverter.js',
+    'src/js/components/currencyConverter.service.js',
+    'src/js/components/currencyConverter.controller.js',
+    'src/js/components/currencyConverter.filter.js',
+    'src/js/directives/internetConnection.directive.js'
+  ])
     .pipe(concat('index.js'))
     .pipe(babel({
       presets: ['env']
@@ -89,6 +103,7 @@ gulp.task('server', ['index', 'html', 'script', 'style'], function(done) {
 
 gulp.task('watch', function() {
   gulp.watch(path.src.html, ['index']);
+  gulp.watch(path.src.html, ['html']);
   gulp.watch(path.src.style, ['style']);
   gulp.watch(path.src.js, ['script']);
 });
