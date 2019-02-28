@@ -19,7 +19,6 @@ body {
   top: 100px;
   margin: 0 auto;
   width: 90%;
-  // padding-top: 40px;
   background-color: hsla(0, 0%, 100%, 0.5);
   border-radius:10px; 
 
@@ -111,21 +110,9 @@ body {
       height: 10px;
     }
   }
-  .or {
-    height: 38px;
-    color: #fff;
-    font-size: 20px;
-  }
 }
   .form-control{
     width: 45%;
-  }
-  .content-buy {
-    width: 100%;
-  }
-  .content-sell {
-    width: 100%;
-    // display: none;
   }
 }
 
@@ -226,8 +213,6 @@ body {
   .draw-border {
     @include btns-border-drawing(#58afd1, #ffe593, 4px, bottom, right);
   }
-  
-  //=== Button styling, semi-ignore
   .btns {
     background: none;
     border: none;
