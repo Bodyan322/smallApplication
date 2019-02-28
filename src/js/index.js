@@ -22,7 +22,7 @@
   }]);
 
   app.run(function($window, $rootScope) {
-    $rootScope.netActive = navigator.onLine;
+    $rootScope.inetChecker = navigator.onLine;
     $window.addEventListener('offline', function() {
       $rootScope.$apply(function() {
         $rootScope.inetChecker = false;
