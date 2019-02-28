@@ -35,15 +35,34 @@ gulp.task('index', function() {
     .pipe(gulp.dest(path.build.html));
 });
 
+gulp.task('html', function() {
+  gulp.src('src/js/components/templates/currencyConverter.html')
+    .pipe(gulp.dest(path.build.html));
+});
+
 gulp.task('script', function() {
-  return gulp.src(['src/js/index.js', 'src/js/service.js', 'src/js/controller.js', 'src/js/filter.js'])
+  return gulp.src([
+    'src/js/index.js',
+    'src/js/components/currencyConverter.js',
+    'src/js/components/currencyConverter.service.js',
+    'src/js/components/currencyConverter.controller.js',
+    'src/js/components/currencyConverter.filter.js',
+    'src/js/directives/internetConnection.directive.js'
+  ])
     .pipe(concat('index.js'))
     .pipe(plumber())
     .pipe(gulp.dest(path.build.js));
 });
 
 gulp.task('script:build', function() {
-  return gulp.src(['src/js/index.js', 'src/js/service.js', 'src/js/controller.js', 'src/js/filter.js'])
+  return gulp.src([
+    'src/js/index.js',
+    'src/js/components/currencyConverter.js',
+    'src/js/components/currencyConverter.service.js',
+    'src/js/components/currencyConverter.controller.js',
+    'src/js/components/currencyConverter.filter.js',
+    'src/js/directives/internetConnection.directive.js'
+  ])
     .pipe(concat('index.js'))
     .pipe(babel({
       presets: ['env']
@@ -51,7 +70,6 @@ gulp.task('script:build', function() {
     .pipe(uglify())
     .pipe(gulp.dest(path.build.js));
 });
-
 
 gulp.task('style', function() {
   gulp.src(path.src.style)
@@ -72,7 +90,7 @@ gulp.task('style:build', function() {
 });
 
 
-gulp.task('server', ['index', 'script', 'style'], function(done) {
+gulp.task('server', ['index', 'html', 'script', 'style'], function(done) {
   browserSync.init({
     server: {
       baseDir: './build/'
@@ -85,10 +103,11 @@ gulp.task('server', ['index', 'script', 'style'], function(done) {
 
 gulp.task('watch', function() {
   gulp.watch(path.src.html, ['index']);
+  gulp.watch(path.src.html, ['html']);
   gulp.watch(path.src.style, ['style']);
   gulp.watch(path.src.js, ['script']);
 });
 
 
 gulp.task('default', ['watch', 'server']);
-gulp.task('build', ['index', 'script:build', 'style:build']);
+gulp.task('build', ['index', 'html', 'script:build', 'style:build']);
