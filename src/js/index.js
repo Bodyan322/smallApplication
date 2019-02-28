@@ -5,23 +5,18 @@
     $stateProvider
       .state({
         name: 'root',
-        url: '/'
-      })
-      .state({
-        name: 'home',
-        url: '/home',
-        component: 'homePage'
+        url: '/',
+        template: `<div class="sign">
+        <span class="sign__word">Welcome</span>
+        <span class="sign__word">you</span>
+        <span class="sign__word">here</span>
+      </div>`
       })
       .state({
         name: 'converter',
-        url: '/converter',
+        // url: '/converter',
+        url: '',
         component: 'currencyConverter'
-        // template: '<p>GG</p>'
-      })
-      .state({
-        name: 'currencies',
-        url: '/currencies',
-        component: '<p>aaaaaa</p>'
       });
 
     currServProvider.setAPI('https://api.privatbank.ua/p24api/pubinfo?json&exchange&coursid=11');
