@@ -2,7 +2,10 @@
 (function() {
   app.directive('inetChecker', function() {
     return {
-      restrict: 'A'
+      restrict: 'AE',
+      replace: true,
+      template: `<div class="cheker-connection" ng-hide='inetChecker'>
+      <div class="neon">OFFLINE </div>`
     };
   });
 }());

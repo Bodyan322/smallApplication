@@ -14,7 +14,6 @@
       })
       .state({
         name: 'converter',
-        // url: '/converter',
         url: '',
         component: 'currencyConverter'
       });
@@ -26,12 +25,12 @@
     $rootScope.netActive = navigator.onLine;
     $window.addEventListener('offline', function() {
       $rootScope.$apply(function() {
-        $rootScope.netActive = false;
+        $rootScope.inetChecker = false;
       });
     });
     $window.addEventListener('online', function() {
       $rootScope.$apply(function() {
-        $rootScope.netActive = true;
+        $rootScope.inetChecker = true;
       });
     });
   });
