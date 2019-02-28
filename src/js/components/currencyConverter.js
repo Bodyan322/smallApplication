@@ -1,7 +1,7 @@
 /* global app */
 (function() {
   app.component('currencyConverter', {
-    templateUrl: 'converterApplication.html',
+    templateUrl: 'currencyConverter.html',
     replace: true
   });
 }());
