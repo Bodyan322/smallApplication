@@ -1,7 +1,7 @@
 <h1 align="center">:fire:&nbspCurrency Converter&nbsp:fire:</h1>
 
 ## About
-<p>Here is the application of the currency converter, in which you can translate the currency of your choice.</p>
+<p>Here is the application of the currency converter, in which you can exchange the currency of your choice.</p>
 
 ## At first you need: 
 :heavy_plus_sign: Install package modules using `npm install` or `npm i`.
