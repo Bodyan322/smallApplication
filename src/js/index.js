@@ -16,11 +16,12 @@
         name: 'converter',
         url: '/converter',
         component: 'currencyConverter'
+        // template: '<p>GG</p>'
       })
       .state({
         name: 'currencies',
         url: '/currencies',
-        component: 'aboutPage'
+        component: '<p>aaaaaa</p>'
       });
 
     currServProvider.setAPI('https://api.privatbank.ua/p24api/pubinfo?json&exchange&coursid=11');

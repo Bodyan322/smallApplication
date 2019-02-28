@@ -14,7 +14,12 @@
 
 <body ng-app='app'>
   <div class="container" ng-app='app'>
-    <currency-converter></currency-converter>
+    <div class="wrapperButtons">
+    <button ui-sref="root" class="btns draw-border color" ui-sref-active="active">hello</button>
+    <button ui-sref="converter" class="btns draw-border" ui-sref-active="active">click</button>
+  </div>
+    <ui-view></ui-view>
+    <!-- <currency-converter></currency-converter> -->
     <div class="cheker-connection" inet-checker ng-hide='netActive'>
         <div class="neon">OFFLINE </div>
     </div>
