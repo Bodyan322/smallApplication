@@ -1,7 +1,28 @@
 /* global app, angular */
 (function() {
-  const app = angular.module('app', []);
-  app.config(['currServProvider', function(currServProvider) {
+  const app = angular.module('app', ['ui.router']);
+  app.config(['currServProvider', '$stateProvider', function(currServProvider, $stateProvider) {
+    $stateProvider
+      .state({
+        name: 'root',
+        url: '/'
+      })
+      .state({
+        name: 'home',
+        url: '/home',
+        component: 'homePage'
+      })
+      .state({
+        name: 'converter',
+        url: '/converter',
+        component: 'currencyConverter'
+      })
+      .state({
+        name: 'currencies',
+        url: '/currencies',
+        component: 'aboutPage'
+      });
+
     currServProvider.setAPI('https://api.privatbank.ua/p24api/pubinfo?json&exchange&coursid=11');
   }]);
 
